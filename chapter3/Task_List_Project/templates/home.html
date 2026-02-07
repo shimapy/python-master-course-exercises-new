@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>Home</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </head>
+    <body>  
+      <div class="home">
+        <nav class="navbar">
+          <div class="navbar-left">
+            <a href="{{ url_for('task_form',reson='create' ,task_id='None') }}" class="nav-button">Add Task</a>
+            <form method="POST" action="{{ url_for('import_excel') }}">
+              <button type="submit" class="nav-button">Import Excel</button>
+            </form> 
+            <a href="{{ url_for('download_tasks') }}" class="nav-button">Download as JSON</a>
+          </div>
+        </nav>
+        <div style="text-align: center; margin-top: 20px;">
+          <h2>TODO List</h2>
+        </div>
+        {% if tasks|length < 1 %}
+          <div class="grid-container">
+            <p style="font-weight: bold;">You have no tasks</p>
+          </div>
+        {%else%}  
+          <div class="grid-container">
+            <!-- Header -->
+            <div class="grid-item header">Title</div>
+            <div class="grid-item header">Status</div>
+            <div class="grid-item header">Description</div>
+            <div class="grid-item header"></div>
+            <div class="grid-item header"></div>
+            <div class="grid-item header"></div>
+
+            <!-- Dynamic rows -->
+            {% for task in tasks %}
+              <div class="grid-item">{{ task.title }}</div>
+              <div class="grid-item">{{ task.status }}</div>
+              <div class="grid-item">{{ task.description }}</div>
+              <div class="grid-item">
+                <a href="{{ url_for('task_form', reson='edit' ,task_id=task.id) }}">
+                  <button>Edit</button>
+                </a>
+              </div>
+              <div class="grid-item">
+                <a href="{{ url_for('task_form', reson='show' ,task_id=task.id) }}">
+                  <button>Show</button>
+                </a>
+              </div>
+              <div class="grid-item">
+                <form method="POST" action="{{ url_for('delete_task', task_id=task.id) }}">
+                  <a href="{{ url_for('delete_task', task_id=task.id) }}"> 
+                    <button>Delete</button>
+                  </a>  
+                </form>
+              </div>
+            {% endfor %}
+          </div> 
+          
+        {% endif %}
+      </div>
+    </body>
+</html>

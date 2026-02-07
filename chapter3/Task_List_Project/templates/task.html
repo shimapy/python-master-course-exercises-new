@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>Home</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </head>
+    <body>
+      <nav class="navbar">
+        <div class="navbar-left">
+          <a href="/home" class="nav-button"><i class="fas fa-home"></i> Home</a>
+        </div>
+      </nav>
+      <header class="subheader">
+        {% if form_status == 'create' %}
+          <h2>Create Task</h2>
+        {% elif form_status == 'edit' %}  
+          <h2>Edit Task</h2>
+        {% else %}  
+          <h2>Show Task</h2>
+        {% endif %}  
+      </header>
+      <div class="container">
+        <div class="form-container">
+          {% if form_status == 'create' %}
+            <h2>New Task</h2>
+          {% else %}  
+            <h2>{{ task.title }}</h2>
+          {% endif %}  
+          <form action="{{action}}" method="POST">
+            <label for="title">Task Title:</label>
+            <input type="text" id="title" name="title" value="{{ task.title }}" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required>{{ task.description }}</textarea>
+
+            <!-- status -->
+            <div class="radio-group">
+              <label>status:</label><br>
+              <label class="radio-item">
+                <input type="radio" name="status1" value="Pending" required {% if task and task.status|lower == 'pending' %}checked{% endif %}>Pending<br>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="status1" value="Completed" required {% if task and task.status|lower == 'completed' %}checked{% endif %}>Completed<br>
+              </label>
+            </div>
+          {% if form_status == 'create' %}
+            <div class="buttons">
+              <button type="submit">Save</button>
+            </div>
+          {% elif form_status == 'edit' %}
+            <div class="buttons">
+              <button type="submit">Edit</button>
+            </div>
+          {% endif %}
+        </from>
+      </div>
+    </div>
+  </body>
+</html>
