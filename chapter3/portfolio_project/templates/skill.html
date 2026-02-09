@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+{% block content %}
+    <section class="skills">
+        <div class="skills-container">
+            <h1 class="section-title">My Skills</h1>
+            <p class="section-subtitle">
+                Technologies and tools I use to build reliable backend systems
+            </p>
+            {% for skill in skills %}  
+            <div class="skill-group">
+                <h2>{{skill.title}}</h2>
+                <ul>
+                    {% for item in skill["items"]  %}  
+                    <li>{{item}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}    

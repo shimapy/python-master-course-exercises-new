@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{% block content %}
+  <section class="hero">
+    <div class="hero-content">
+      <div class="profile-image">
+        <img src="{{ url_for('static', filename='images/profile.JPG') }}" alt="Profile Photo">
+      </div>
+      <div class="profile-info">
+        <h1 class="name">Hello I'm Shima Monzavi!</h1>
+        <p class="title">
+          Software Engineer | Backend Developer
+        </p>
+        <p class="about">
+          I am a backend developer with a strong focus on building clean,
+          scalable, and maintainable server-side applications.
+          I enjoy designing APIs, working with databases, and solving
+          real-world problems using efficient architectures.
+        </p>
+        <p class="about">
+          I have experience with authentication systems, RESTful APIs,
+          database design, and applying software engineering principles
+          such as SOLID and clean code practices.
+        </p>
+        <div class="cta">
+          <a href="{{ url_for('project_page') }}" class="btn">View Projects</a>
+          <a href="{{ url_for('skils_page') }}" class="btn">View Skills</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

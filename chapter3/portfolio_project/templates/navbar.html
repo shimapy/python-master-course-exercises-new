@@ -1,0 +1,18 @@
+<nav class="navbar">
+    <div class="nav-container">
+        <ul class="nav-links">
+            {% if home == true %}
+                <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i>Home</a></li>
+            {% endif %}    
+            {% if skill == true %}
+                <li><a href="{{ url_for('skils_page') }}">Skills</a></li>
+            {% endif %}    
+            {% if project == true %}
+                <li><a href="{{ url_for('project_page') }}">Projects</a></li>
+            {% endif %}
+            <li>
+                <a href="{{ url_for('static', filename='resume/resume.pdf') }}" target="_blank">Download Resume(PDF)</a>
+            </li>
+        </ul>
+    </div>
+</nav>

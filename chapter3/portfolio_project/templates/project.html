@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% block content %}
+    <section class="projects">
+        <div class="projects-container">
+            <h1 class="section-title">Projects</h1>
+            <p class="section-subtitle">
+                Some of the backend projects I have built and worked on
+            </p>
+            <div class="project-grid">
+              {% for project in projects %}
+                <div class="project-card">
+                    <h2>{{ project.title }}</h2>
+                    <p class="project-description">{{ project.description }}</p>
+                    <div class="project-tech">{{ project.tech }}</div>
+                    {% if project.github != "" %}
+                    <a href="{{project.github}}" class="project-link" target="_blank">View on GitHub</a>
+                    {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
