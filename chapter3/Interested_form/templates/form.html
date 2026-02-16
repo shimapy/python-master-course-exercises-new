@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>Home</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </head>
+    <body>
+      <nav class="navbar">
+        <div class="navbar-left">
+          <a href="/home" class="nav-button"><i class="fas fa-home"></i> Home</a>
+        </div>
+      </nav>
+      <header class="subheader">
+        <h2>Create new person</h2> 
+      </header>
+      <div class="container">
+        <div class="form-container">
+          <h2>New Person</h2>  
+          <form action="{{ url_for('create_person') }}" method="POST">
+            <label for="first name">First Name:</label>
+            <input type="text" id="first name" name="first_name" value="" required>
+            <label for="last name">Last Name:</label>
+            <input type="text" id="last name" name="last_name" value="" required>
+            <label for="age">Age:</label>
+            <input type="number" min="1"  max="100" id="age" name="age" value="" required>
+            <!-- Interest -->
+            <div class="radio-group">
+              <label>Interesting:</label><br>
+              {% for item in Interestings %}
+                <label class="radio-item">
+                  <input type="radio" name="Interesting1" value="{{ item }}" required> {{ item }}<br>
+                </label>
+              {% endfor %}
+            </div>
+            <!-- score -->
+            <label for="score">Score:</label>
+            <select id="score" name="score" required>
+            <option value="">-- Choose a Score --</option>
+            {% for score in scores %}
+            <option value="{{ score }}">{{ score }}</option>
+            {% endfor %}
+            </select>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description"></textarea>
+
+            <div class="buttons">
+              <button type="submit">Save</button>
+            </div>
+        </from>
+      </div>
+    </div>
+  </body>
+</html>

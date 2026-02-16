@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>Home</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </head>
+    <body>  
+      <div class="home">
+        <nav class="navbar">
+          <div class="navbar-left">
+            <a href="{{ url_for('create_person') }}" class="nav-button">Add Person</a>
+          </div>
+        </nav>
+        <div style="text-align: center; margin-top: 20px;">
+          <h2>Personal Information List</h2>
+        </div>
+        {% if persons|length < 1 %}
+          <div class="grid-container">
+            <p style="font-weight: bold;">There is not information</p>
+          </div>
+        {%else%}  
+          <div class="grid-container">
+            <!-- Header -->
+            <div class="grid-item header">Name</div>
+            <div class="grid-item header">Age</div>
+            <div class="grid-item header">Interesting</div>
+            <div class="grid-item header">Score</div>
+            <div class="grid-item header">Description</div>
+
+            <!-- Dynamic rows -->
+            {% for person in persons %}
+              <div class="grid-item">{{ person.first_name }} {{person.last_name}}</div>
+              <div class="grid-item">{{ person.age }}</div>
+              <div class="grid-item">{{ person.interesting }}</div>
+              <div class="grid-item">{{ person.score }}</div>
+              <div class="grid-item">{{ person.description }}</div>
+            {% endfor %}
+          </div> 
+          
+        {% endif %}
+      </div>
+    </body>
+</html>
